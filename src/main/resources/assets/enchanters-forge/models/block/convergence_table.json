@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "enchanters-forge:block/convergence_table"
+  }
+}

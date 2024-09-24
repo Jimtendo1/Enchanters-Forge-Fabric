@@ -1,0 +1,10 @@
+{
+  "block.enchanters_forge.convergence_table": "Convergence Table",
+
+  "itemgroup.enchanters_forge": "Enchanter's Forge",
+
+  "enchantment.enchanters_forge.poison_aspect": "Poison Aspect",
+  "enchantment.enchanters_forge.wither_aspect": "Wither Aspect",
+  "enchantment.enchanters_forge.frost_aspect": "Frost Aspect",
+  "enchantment.enchanters_forge.soulbound": "Soulbound"
+}

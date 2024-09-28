@@ -5,6 +5,8 @@ import net.jimtendo.enchantersforge.enchantment.custom.SoulboundHelper;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.TridentItem;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -32,4 +34,32 @@ public class PlayerEntityMixin {
             SoulboundHelper.storeSoulBoundItems(player, soulBoundItems);
         }
     }
+    @Inject(method = "tick", at = @At("TAIL"))
+    private void onTick(CallbackInfo ci) {
+        PlayerEntity player = (PlayerEntity) (Object) this;
+        World world = player.getWorld();
+
+        if (!world.isClient && player.isInsideWaterOrBubbleColumn() && player.age % 20 == 0) { // Check every second
+            ItemStack mainHandStack = player.getMainHandStack();
+            ItemStack offHandStack = player.getOffHandStack();
+
+            int enchantmentLevel = Math.max(
+                    getWatersEmbraceLevel(mainHandStack),
+                    getWatersEmbraceLevel(offHandStack)
+            );
+
+            if (enchantmentLevel > 0) {
+                float healAmount = enchantmentLevel * 0.5f; // 0.5 hearts per level
+                player.heal(healAmount);
+            }
+        }
+    }
+
+    private int getWatersEmbraceLevel(ItemStack stack) {
+        if (stack.getItem() instanceof TridentItem) {
+            return EnchantmentHelper.getLevel(ModEnchantments.WATERS_EMBRACE, stack);
+        }
+        return 0;
+    }
 }
+

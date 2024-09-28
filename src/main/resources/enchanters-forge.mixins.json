@@ -3,9 +3,10 @@
 	"package": "net.jimtendo.enchantersforge.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin",
-		"PlayerEntityMixin"
-
+		"PlayerEntityMixin",
+		"TridentEntityMixin",
+		"LivingEntityMixin",
+		"ArrowEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

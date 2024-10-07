@@ -5,6 +5,12 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.world.PersistentState;
 
 public class SoulboundPersistentState extends PersistentState {
+    public static final Type<SoulboundPersistentState> TYPE = new Type<>(
+            SoulboundPersistentState::new,
+            SoulboundPersistentState::createFromNbt,
+            null // Use null for the third parameter if you're not using data fixers
+    );
+
     private final NbtCompound data;
 
     public SoulboundPersistentState() {

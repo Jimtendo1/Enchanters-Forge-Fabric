@@ -19,8 +19,7 @@ public class SoulboundHelper {
 
         PersistentStateManager persistentStateManager = world.getPersistentStateManager();
         SoulboundPersistentState state = persistentStateManager.getOrCreate(
-                SoulboundPersistentState::createFromNbt,
-                SoulboundPersistentState::new,
+                SoulboundPersistentState.TYPE,
                 "soul_binding_data"
         );
 
@@ -41,8 +40,7 @@ public class SoulboundHelper {
 
         PersistentStateManager persistentStateManager = world.getPersistentStateManager();
         SoulboundPersistentState state = persistentStateManager.getOrCreate(
-                SoulboundPersistentState::createFromNbt,
-                SoulboundPersistentState::new,
+                SoulboundPersistentState.TYPE,
                 "soul_binding_data"
         );
 

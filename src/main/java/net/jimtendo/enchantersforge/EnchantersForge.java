@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class EnchantersForge implements ModInitializer {
-	public static final String MOD_ID = "enchanters_forge";
+	public static final String MOD_ID = "enchanters-forge";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 

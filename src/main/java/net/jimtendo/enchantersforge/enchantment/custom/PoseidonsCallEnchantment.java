@@ -53,4 +53,5 @@ public class PoseidonsCallEnchantment extends Enchantment {
             }
         }
     }
+
 }

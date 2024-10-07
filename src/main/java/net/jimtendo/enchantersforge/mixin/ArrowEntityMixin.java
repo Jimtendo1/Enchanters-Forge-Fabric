@@ -75,18 +75,14 @@ public class ArrowEntityMixin {
 			Vec3d currentVelocity = arrow.getVelocity();
 			double currentSpeed = currentVelocity.length();
 
-			// Calculate the direction to the target
 			Vec3d directionToTarget = targetPos.subtract(arrowPos).normalize();
 
-			// Interpolate between current direction and direction to target
-			double homingStrength = 0.1 * homingLevel; // Adjust this value to change homing strength
+			double homingStrength = 0.1 * homingLevel;
 			Vec3d newDirection = currentVelocity.normalize().add(directionToTarget.multiply(homingStrength)).normalize();
 
-			// Apply speed decay
-			double speedDecay = 0.99; // Adjust this value to change how quickly arrows slow down
-			double newSpeed = Math.max(currentSpeed * speedDecay, currentSpeed * 0.5); // Ensure arrow doesn't slow down too much
+			double speedDecay = 0.99;
+			double newSpeed = Math.max(currentSpeed * speedDecay, currentSpeed * 0.5);
 
-			// Set the new velocity
 			Vec3d newVelocity = newDirection.multiply(newSpeed);
 			arrow.setVelocity(newVelocity);
 		}

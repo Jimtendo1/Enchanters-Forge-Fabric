@@ -1,20 +1,20 @@
 {
-  "block.enchanters_forge.convergence_table": "Convergence Table",
+  "block.enchanters-forge.convergence_table": "Convergence Table",
 
-  "itemgroup.enchanters_forge": "Enchanter's Forge",
+  "itemgroup.enchanters-forge": "Enchanter's Forge",
 
-  "enchantment.enchanters_forge.poison_aspect": "Poison Aspect",
-  "enchantment.enchanters_forge.wither_aspect": "Wither Aspect",
-  "enchantment.enchanters_forge.frost_aspect": "Frost Aspect",
-  "enchantment.enchanters_forge.incinerate": "Incinerate",
-  "enchantment.enchanters_forge.intoxicate": "Intoxicate",
-  "enchantment.enchanters_forge.frostbite": "Frostbite",
-  "enchantment.enchanters_forge.ricochet": "Ricochet",
-  "enchantment.enchanters_forge.disarming": "Disarming",
-  "enchantment.enchanters_forge.poseidons_call": "Poseidons Call",
-  "enchantment.enchanters_forge.waters_embrace": "Waters Embrace",
-  "enchantment.enchanters_forge.vitality_boost": "Vitality Boost",
-  "enchantment.enchanters_forge.vampirism": "Vampirism",
-  "enchantment.enchanters_forge.homing": "Homing",
-  "enchantment.enchanters_forge.soulbound": "Soulbound"
+  "enchantment.enchanters-forge.poison_aspect": "Poison Aspect",
+  "enchantment.enchanters-forge.wither_aspect": "Wither Aspect",
+  "enchantment.enchanters-forge.frost_aspect": "Frost Aspect",
+  "enchantment.enchanters-forge.incinerate": "Incinerate",
+  "enchantment.enchanters-forge.intoxicate": "Intoxicate",
+  "enchantment.enchanters-forge.frostbite": "Frostbite",
+  "enchantment.enchanters-forge.ricochet": "Ricochet",
+  "enchantment.enchanters-forge.disarming": "Disarming",
+  "enchantment.enchanters-forge.poseidons_call": "Poseidons Call",
+  "enchantment.enchanters-forge.waters_embrace": "Waters Embrace",
+  "enchantment.enchanters-forge.vitality_boost": "Vitality Boost",
+  "enchantment.enchanters-forge.vampirism": "Vampirism",
+  "enchantment.enchanters-forge.homing": "Homing",
+  "enchantment.enchanters-forge.soulbound": "Soulbound"
 }

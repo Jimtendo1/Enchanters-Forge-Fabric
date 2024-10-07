@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "enchanters-forge:block/convergence_table",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "enchanters-forge:block/convergence_table",
+      "y": 180
+    },
+    "facing=south": {
       "model": "enchanters-forge:block/convergence_table"
+    },
+    "facing=west": {
+      "model": "enchanters-forge:block/convergence_table",
+      "y": 90
     }
   }
 }

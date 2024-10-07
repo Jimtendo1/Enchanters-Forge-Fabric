@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "nNn",
+    " A "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:enchanting_table"
+    },
+    "n": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "A": {
+      "item": "minecraft:anvil"
+    }
+  },
+  "result": {
+    "item": "enchanters-forge:convergence_table",
+    "count": 1
+  }
+}

@@ -3,13 +3,13 @@
 	"id": "enchanters-forge",
 	"version": "${version}",
 	"name": "Enchanter's Forge",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Minecraft Mod that adds new enchantments and a Block to combine incompatible enchantments.",
 	"authors": [
-		"Me!"
+		"Jimtendo"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": ""
 	},
 	"license": "MIT",
 	"icon": "assets/enchanters-forge/icon.png",

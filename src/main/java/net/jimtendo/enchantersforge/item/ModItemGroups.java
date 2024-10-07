@@ -15,8 +15,8 @@ import net.minecraft.util.Identifier;
 public class ModItemGroups {
     public static final ItemGroup ENCHANTERS_FORGE_GROUP = Registry.register(Registries.ITEM_GROUP,
             new Identifier(EnchantersForge.MOD_ID, "enchanters_forge"),
-            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.enchanters_forge"))
-                    .icon(() -> new ItemStack(Items.ENCHANTED_BOOK)).entries((displayContext, entries) -> {
+            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.enchanters-forge"))
+                    .icon(() -> new ItemStack(ModBlocks.CONVERGENCE_TABLE)).entries((displayContext, entries) -> {
                         entries.add(ModBlocks.CONVERGENCE_TABLE);
 
                         for (Enchantment enchantment : ModEnchantments.MOD_ENCHANTMENTS) {

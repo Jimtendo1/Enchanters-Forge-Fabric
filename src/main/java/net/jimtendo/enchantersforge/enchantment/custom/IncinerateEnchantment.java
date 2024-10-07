@@ -2,6 +2,7 @@ package net.jimtendo.enchantersforge.enchantment.custom;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.enchantment.ThornsEnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -33,5 +34,12 @@ public class IncinerateEnchantment extends Enchantment {
         if (attacker != null) {
             attacker.setOnFireFor(level * 4); // Set attacker on fire for 4 seconds per level
         }
+    }
+    @Override
+    public boolean canAccept(Enchantment other) {
+        if (other instanceof ThornsEnchantment || other instanceof FrostbiteEnchantment || other instanceof IntoxicateEnchantment) {
+            return false;
+        }
+        return super.canAccept(other);
     }
 }

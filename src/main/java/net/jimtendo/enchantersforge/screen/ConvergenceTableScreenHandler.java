@@ -1,51 +1,96 @@
 package net.jimtendo.enchantersforge.screen;
 
 import net.jimtendo.enchantersforge.block.entity.ConvergenceTableBlockEntity;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
-import org.jetbrains.annotations.Nullable;
 
 public class ConvergenceTableScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
-    public final ConvergenceTableBlockEntity blockEntity;
+    private final ConvergenceTableBlockEntity blockEntity;
 
-    public ConvergenceTableScreenHandler (int syncId, PlayerInventory inventory, PacketByteBuf buf) {
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(2));
+    public ConvergenceTableScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
+        this(syncId, playerInventory, new SimpleInventory(3), new ArrayPropertyDelegate(1), null);
     }
 
-    public ConvergenceTableScreenHandler(int syncId, PlayerInventory playerInventory,
-                                         BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
+    public ConvergenceTableScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, ConvergenceTableBlockEntity blockEntity) {
         super(ModScreenHandlers.CONVERGENCE_TABLE_SCREEN_HANDLER, syncId);
-        checkSize(((Inventory) blockEntity),2);
-        this.inventory = ((Inventory) blockEntity);
+        checkSize(inventory, 3);
+        this.inventory = inventory;
+        this.propertyDelegate = propertyDelegate;
+        this.blockEntity = blockEntity;
         inventory.onOpen(playerInventory.player);
-        this.propertyDelegate = arrayPropertyDelegate;
-        this.blockEntity = ((ConvergenceTableBlockEntity) blockEntity);
 
-        this.addSlot(new Slot(inventory, 0, 80, 80));
-        this.addSlot(new Slot(inventory, 0, 80, 60));
-        this.addSlot(new Slot(inventory, 0, 80, 40));
+        this.addSlot(new ConvergenceTableSlot(inventory, 0, 27, 47));
+        this.addSlot(new ConvergenceTableSlot(inventory, 1, 76, 47));
+        this.addSlot(new Slot(inventory, 2, 134, 47) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
 
+            @Override
+            public boolean canTakeItems(PlayerEntity playerEntity) {
+                return playerEntity.experienceLevel >= getConvergenceCost() || playerEntity.getAbilities().creativeMode;
+            }
+
+            @Override
+            public void onTakeItem(PlayerEntity player, ItemStack stack) {
+                if (!player.getAbilities().creativeMode) {
+                    player.addExperienceLevels(-getConvergenceCost());
+                }
+                inventory.setStack(0, ItemStack.EMPTY);
+                inventory.setStack(1, ItemStack.EMPTY);
+                super.onTakeItem(player, stack);
+            }
+        });
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
-
-        addProperties(arrayPropertyDelegate);
+        addProperties(propertyDelegate);
     }
 
-    public boolean isCrafting() {
-        return propertyDelegate.get(0) > 0;
+    private class ConvergenceTableSlot extends Slot {
+        public ConvergenceTableSlot(Inventory inventory, int index, int x, int y) {
+            super(inventory, index, x, y);
+        }
+
+        @Override
+        public void setStack(ItemStack stack) {
+            super.setStack(stack);
+            updateResult();
+        }
+    }
+
+    private void updateResult() {
+        if (blockEntity != null) {
+            blockEntity.tick(blockEntity.getWorld(), blockEntity.getPos(), blockEntity.getCachedState());
+        }
+    }
+    public boolean hasInputs() {
+        return !inventory.getStack(0).isEmpty() || !inventory.getStack(1).isEmpty();
+    }
+
+    public boolean isValidRecipe() {
+        if (!hasInputs()) {
+            return true;
+        }
+
+        ItemStack output = inventory.getStack(2);
+
+        return !output.isEmpty() && getConvergenceCost() > 0;
+    }
+
+    public int getConvergenceCost() {
+        return this.propertyDelegate.get(0);
     }
 
     @Override
@@ -89,6 +134,13 @@ public class ConvergenceTableScreenHandler extends ScreenHandler {
     private void addPlayerHotbar(PlayerInventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
+        }
+    }
+    @Override
+    public void onClosed(PlayerEntity player) {
+        super.onClosed(player);
+        if (blockEntity != null) {
+            blockEntity.returnItemsToPlayer(player);
         }
     }
 }

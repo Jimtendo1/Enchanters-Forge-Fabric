@@ -3,6 +3,7 @@ package net.jimtendo.enchantersforge.enchantment.custom;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.enchantment.ThornsEnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -30,5 +31,13 @@ public class RicochetEnchantment extends Enchantment {
     @Override
     public int getMaxLevel() {
         return 3;
+    }
+
+    @Override
+    public boolean canAccept(Enchantment other) {
+        if (other instanceof HomingEnchantment) {
+            return false;
+        }
+        return super.canAccept(other);
     }
 }

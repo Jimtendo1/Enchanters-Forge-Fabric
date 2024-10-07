@@ -2,6 +2,7 @@ package net.jimtendo.enchantersforge.enchantment.custom;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.enchantment.ThornsEnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -35,5 +36,12 @@ public class IntoxicateEnchantment extends Enchantment {
         if (attacker instanceof LivingEntity) {
             ((LivingEntity) attacker).addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, level * 80, level - 1));
         }
+    }
+    @Override
+    public boolean canAccept(Enchantment other) {
+        if (other instanceof ThornsEnchantment || other instanceof IncinerateEnchantment || other instanceof FrostbiteEnchantment) {
+            return false;
+        }
+        return super.canAccept(other);
     }
 }

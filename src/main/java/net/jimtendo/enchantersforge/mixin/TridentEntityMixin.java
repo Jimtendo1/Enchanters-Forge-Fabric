@@ -23,8 +23,8 @@ public abstract class TridentEntityMixin extends PersistentProjectileEntity {
 	@Shadow private ItemStack tridentStack;
 	@Shadow private boolean dealtDamage;
 
-	protected TridentEntityMixin(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
-		super(entityType, world);
+	protected TridentEntityMixin(EntityType<? extends PersistentProjectileEntity> entityType, World world, ItemStack stack) {
+		super(entityType, world, stack);
 	}
 
 	@Inject(method = "onEntityHit", at = @At("TAIL"))

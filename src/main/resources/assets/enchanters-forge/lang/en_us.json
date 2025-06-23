@@ -16,5 +16,11 @@
   "enchantment.enchanters-forge.vitality_boost": "Vitality Boost",
   "enchantment.enchanters-forge.vampirism": "Vampirism",
   "enchantment.enchanters-forge.homing": "Homing",
-  "enchantment.enchanters-forge.soulbound": "Soulbound"
+  "enchantment.enchanters-forge.soulbound": "Soulbound",
+  "enchantment.enchanters-forge.step_assist": "Step Assist",
+  "enchantment.enchanters-forge.lava_walker": "Lava Walker",
+  "enchantment.enchanters-forge.magnetism": "Magnetism",
+  "enchantment.enchanters-forge.toxin": "Toxin",
+  "enchantment.enchanters-forge.decay": "Decay",
+  "enchantment.enchanters-forge.chill": "Chill"
 }

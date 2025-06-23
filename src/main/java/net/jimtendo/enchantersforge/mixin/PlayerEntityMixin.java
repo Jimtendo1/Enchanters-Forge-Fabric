@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,27 @@ public class PlayerEntityMixin {
             if (enchantmentLevel > 0) {
                 float healAmount = enchantmentLevel * 0.5f; // 0.5 hearts per level
                 player.heal(healAmount);
+            }
+        }
+
+        // Lava Walker logic
+        if (!world.isClient && player.isOnGround()) {
+            ItemStack boots = player.getEquippedStack(net.minecraft.entity.EquipmentSlot.FEET);
+            int lavaWalkerLevel = EnchantmentHelper.getLevel(ModEnchantments.LAVA_WALKER, boots);
+            if (lavaWalkerLevel > 0) {
+                int radius = Math.min(16, 2 + lavaWalkerLevel); // similar to Frost Walker
+                BlockPos center = player.getBlockPos().down();
+                BlockPos.Mutable mutable = new BlockPos.Mutable();
+                for (int dx = -radius; dx <= radius; dx++) {
+                    for (int dz = -radius; dz <= radius; dz++) {
+                        if (dx * dx + dz * dz > radius * radius) continue;
+                        mutable.set(center.getX() + dx, center.getY(), center.getZ() + dz);
+                        if (world.getBlockState(mutable).isOf(net.minecraft.block.Blocks.LAVA)
+                                && world.getBlockState(mutable).getFluidState().isStill()) {
+                            world.setBlockState(mutable, net.minecraft.block.Blocks.OBSIDIAN.getDefaultState());
+                        }
+                    }
+                }
             }
         }
     }

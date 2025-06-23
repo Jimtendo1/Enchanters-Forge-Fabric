@@ -48,6 +48,12 @@ public class ModEnchantments {
             new LavaWalkerEnchantment());
     public static final Enchantment MAGNETISM = registerEnchantment("magnetism",
             new MagnetismEnchantment());
+    public static final Enchantment TOXIN = registerEnchantment("toxin",
+            new ToxinEnchantment());
+    public static final Enchantment DECAY = registerEnchantment("decay",
+            new DecayEnchantment());
+    public static final Enchantment CHILL = registerEnchantment("chill",
+            new ChillEnchantment());
 
     private static Enchantment registerEnchantment(String name, Enchantment enchantment) {
         Enchantment registeredEnchantment = Registry.register(Registries.ENCHANTMENT, new Identifier(EnchantersForge.MOD_ID, name), enchantment);

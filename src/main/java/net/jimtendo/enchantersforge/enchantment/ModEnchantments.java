@@ -6,6 +6,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.entity.EquipmentSlot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,12 @@ public class ModEnchantments {
             new HomingEnchantment());
     public static final Enchantment SOULBOUND = registerEnchantment("soulbound",
             new SoulboundEnchantment());
+    public static final Enchantment STEP_ASSIST = registerEnchantment("step_assist",
+            new StepAssistEnchantment());
+    public static final Enchantment LAVA_WALKER = registerEnchantment("lava_walker",
+            new LavaWalkerEnchantment());
+    public static final Enchantment MAGNETISM = registerEnchantment("magnetism",
+            new MagnetismEnchantment());
 
     private static Enchantment registerEnchantment(String name, Enchantment enchantment) {
         Enchantment registeredEnchantment = Registry.register(Registries.ENCHANTMENT, new Identifier(EnchantersForge.MOD_ID, name), enchantment);

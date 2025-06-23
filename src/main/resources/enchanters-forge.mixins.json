@@ -6,7 +6,9 @@
 		"PlayerEntityMixin",
 		"TridentEntityMixin",
 		"LivingEntityMixin",
-		"ArrowEntityMixin"
+		"ArrowEntityMixin",
+		"StepAssistMixin",
+		"MagnetismMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

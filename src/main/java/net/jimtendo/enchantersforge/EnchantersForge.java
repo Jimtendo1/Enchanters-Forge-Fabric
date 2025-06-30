@@ -8,6 +8,7 @@ import net.jimtendo.enchantersforge.enchantment.ModEnchantments;
 import net.jimtendo.enchantersforge.enchantment.custom.SoulboundEvents;
 import net.jimtendo.enchantersforge.item.ModItemGroups;
 import net.jimtendo.enchantersforge.screen.ModScreenHandlers;
+import net.jimtendo.enchantersforge.enchantment.ModCompat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +20,9 @@ public class EnchantersForge implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModEnchantments.registerModEnchantments();
+
+		// Register Aether compat enchantments if Aether is present
+		ModCompat.registerCompatEnchantments();
 
 		ModItemGroups.registerItemGroups();
 

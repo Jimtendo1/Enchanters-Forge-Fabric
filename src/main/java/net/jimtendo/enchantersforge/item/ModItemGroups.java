@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.jimtendo.enchantersforge.EnchantersForge;
 import net.jimtendo.enchantersforge.block.ModBlocks;
 import net.jimtendo.enchantersforge.enchantment.ModEnchantments;
+import net.jimtendo.enchantersforge.enchantment.ModCompat;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.*;
@@ -23,6 +24,15 @@ public class ModItemGroups {
                             for (int level = 1; level <= enchantment.getMaxLevel(); level++) {
                                 ItemStack enchantedBook = new ItemStack(Items.ENCHANTED_BOOK);
                                 EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentLevelEntry(enchantment, level));
+                                entries.add(enchantedBook);
+                            }
+                        }
+
+                        // Add Aether Inebriation enchantment if present
+                        if (ModCompat.AETHER_INEBRIATION_ENCHANTMENT != null) {
+                            for (int level = 1; level <= ModCompat.AETHER_INEBRIATION_ENCHANTMENT.getMaxLevel(); level++) {
+                                ItemStack enchantedBook = new ItemStack(Items.ENCHANTED_BOOK);
+                                EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentLevelEntry(ModCompat.AETHER_INEBRIATION_ENCHANTMENT, level));
                                 entries.add(enchantedBook);
                             }
                         }

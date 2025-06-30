@@ -2,6 +2,7 @@ package net.jimtendo.enchantersforge.enchantment;
 
 import net.jimtendo.enchantersforge.EnchantersForge;
 import net.jimtendo.enchantersforge.enchantment.custom.*;
+import net.jimtendo.enchantersforge.enchantment.custom.aether.AetherInebriationEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
